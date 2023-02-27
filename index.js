@@ -16,25 +16,30 @@ console.log(users)
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.get(`${versionCrud}/users`,(res,req)=>{
+app.get(`${versionCrud}/users`,(req,res)=>{
     res.json({
         data:users
     })
 })
 
-app.get(`${versionCrud}/users/:id`,(res,req)=>{
-    const id =res.params.id-1;
+app.get(`${versionCrud}/users/:id`,(req,res)=>{
+    const id =req.params.id-1;
     res.json({
         data:users[id] || undefined
     })
 })
-app.post(`${versionCrud}/users`,(res,req)=>{
+app.post(`${versionCrud}/users`,(req,res)=>{
     const data = req.body;
     users.push(data)
     res.json({
         index:users.length,
         data:users[users.length - 1]
     })
+})
+app.delete(`${versionCrud}/users/:id`,(req,res)=>{
+    const id =res.params.id-1;
+    users.splice(id,1)
+    res.send("utilsateur suprimer")
 })
 
 app.listen(3000,()=>{
