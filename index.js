@@ -36,11 +36,6 @@ app.post(`${versionCrud}/users`,(req,res)=>{
         data:users[users.length - 1]
     })
 })
-app.delete(`${versionCrud}/users/:id`,(req,res)=>{
-    const id =req.params.id-1;
-    users.splice(id,1)
-    res.send("utilsateur suprimer")
-})
 
 app.listen(3000,()=>{
     console.log("connecter")
