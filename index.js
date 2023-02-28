@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+require("dotenv").config()
 var bodyParser = require('body-parser')
 const versionCrud = '/crud/c1'
 let randomProfile = require('random-profile-generator');
@@ -49,7 +50,7 @@ app.delete(`${versionCrud}/users/:id`,(req,res)=>{
     users.splice(id,1)
     res.send("utilsateur suprimer")
 })
-
-app.listen(3000,()=>{
+const port = process.env.PORT || 3000
+app.listen(port,()=>{
     console.log("connecter")
 })
